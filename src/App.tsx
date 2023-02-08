@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { ErrorBoundary } from "react-error-boundary";
+import { Error, myErrorHandler } from "./components/ErrorBoundary";
+import InputForm from "./components/InputForm";
+import CountryCards from "./components/CountryCards";
+import { Provider } from "react-redux";
+import { store } from "./state/store";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="mainContainer">
+        <section className="headerContainer">
+          <h1 className="header">Weather App</h1>
+        </section>
+
+        <section className="appContainer">
+          <ErrorBoundary FallbackComponent={Error} onError={myErrorHandler}>
+            <Provider store={store}>
+              <div className="appDisplay">
+                <InputForm />
+                <CountryCards />
+              </div>
+            </Provider>
+          </ErrorBoundary>
+        </section>
+      </div>
     </div>
   );
 }

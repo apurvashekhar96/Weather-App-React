@@ -1,0 +1,15 @@
+.formElement {
+  text-align: center;
+}
+.formElement > input {
+  margin-right: 10px;
+  border-radius: 1px;
+}
+
+.formElement > button:hover {
+  cursor: pointer;
+}
+
+.formElement > button:active {
+  transform: translateY(1%);
+}
